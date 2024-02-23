@@ -1,0 +1,98 @@
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+}
+
+p {
+    border: 2px solid pink;
+    margin: 0;
+    padding: 0;
+}
+
+/*links color*/
+a:link {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:visited {
+    color: red;
+    text-decoration: none;
+}
+
+a:hover {
+    color: yellow;
+    text-decoration: underline;
+}
+
+a:active {
+    color: green;
+    text-decoration: underline;
+}
+
+/*listen*/
+ul {
+    background: #3399ff;
+    padding: 20px;
+}
+
+
+ul li {
+    background: #cce5ff;
+    margin: 5px;
+}
+
+ol {
+    background: #ff9999;
+    padding: 20px;
+}
+
+ol li {
+    background: #ffe5e5;
+    padding: 5px;
+}
+
+/* classes */
+.test {
+    background: #ffcc00;
+    padding: 20px;
+}
+
+.test2 {
+    margin: 20px;
+}
+
+/* ids */
+#test3 {
+    background: black;
+    color: white;
+    padding: 20px;
+}
+
+/* sonstiges */
+div {
+    background: #ffcc00;
+}
+
+span {
+    background: violet;
+}
