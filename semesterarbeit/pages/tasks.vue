@@ -10,8 +10,7 @@ const loading = ref(false)
 const newTask = ref('')
 
 const { data: tasks } = await useAsyncData('tasks', async () => {
-  const { data, error } = await client.from('tasks').select('id, task, is_completed')//.eq('user_id', user.value.id).order('created_at')
-  console.log("Fetch: ", data, error)
+  const { data, error } = await client.from('tasks').select('id, task, is_completed').eq('user_id', user.value.id).order('created_at')
   return data
 })
 
