@@ -16,6 +16,7 @@ export interface Database {
           task: string | null
           is_completed: boolean | null
           created_at: string | null
+          list_id: number | null
         }
         Insert: {
           id?: number
@@ -23,6 +24,7 @@ export interface Database {
           task?: string | null
           is_completed?: boolean | null
           created_at?: string | null
+          list_id?: number | null	
         }
         Update: {
           id?: number
@@ -30,6 +32,24 @@ export interface Database {
           task?: string | null
           is_completed?: boolean | null
           created_at?: string | null
+          list_id?: number | null
+        }
+      }
+      lists: {
+        Row: {
+          id: number
+          name: string
+          user_id: string
+        }
+        Insert: {
+          id?: number
+          name: string
+          user_id: string
+        }
+        Update: {
+          id?: number
+          name?: string
+          user_id?: string
         }
       }
     }

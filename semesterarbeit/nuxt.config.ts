@@ -5,7 +5,9 @@ export default defineNuxtConfig({
     // UI lib (will be soon open sourced)
     '@nuxthq/ui',
     // https://github.com/nuxt-modules/color-mode
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    // Tailwind CSS
+    '@nuxtjs/tailwindcss',
   ],
   runtimeConfig: {
     public: {
