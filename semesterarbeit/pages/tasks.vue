@@ -1,7 +1,7 @@
 <template>
   <div class="drawer lg:drawer-open">
     <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content flex flex-col items-center justify-center">
+    <div class="drawer-content">
       <!-- Page content here -->
       <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
       <div class="w-full my-[200px]">
@@ -49,8 +49,12 @@
           <li v-for="list in todoLists" :key="list.id" @click="fetchTasks(list.id)">
             <div class="flex justify-between items-center">
               <a :href="`#${list.id}`" :class="{ 'text-blue-500': activeList === list.id }">{{ list.name }}</a>
+              <div>
               <button @click="editList(list)" class="text-gray-600 ml-2" title="Edit list">
                 <i class="i-heroicons-outline-pencil"></i> </button>
+              <button @click="removeList(list)" class="text-red-600 ml-2" title="Remove list">
+                <i class="i-heroicons-outline-trash"></i> </button>
+              </div>
             </div>
           </li>
         </div>
@@ -191,6 +195,19 @@ async function editList(list: List) {
     await client.from('lists').update({ name: newName }).match({ id: list.id })
     await fetchTodoLists()
     activeListName.value = newName
+  }
+}
+
+async function removeList(list: List) {
+  if (confirm(`Do you really want to remove the list "${list.name}"?`)) {
+    try {
+      await client.from('tasks').delete().match({ list_id: list.id })
+      await client.from('lists').delete().match({ id: list.id })
+      todoLists.value = todoLists.value.filter(l => l.id !== list.id)
+      await fetchTasks(todoLists.value[0]?.id)
+    } catch (error) {
+      console.error('Error removing list:', error)
+    }
   }
 }
 
