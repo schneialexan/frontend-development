@@ -1,3 +1,11 @@
+<template>
+  <div>
+    <p class="u-text-black">
+      Redirecting...
+    </p>
+  </div>
+</template>
+
 <script setup lang="ts">
 const user = useSupabaseUser()
 
@@ -7,11 +15,3 @@ watch(user, () => {
   }
 }, { immediate: true })
 </script>
-
-<template>
-  <div>
-    <p class="u-text-black">
-      Redirecting...
-    </p>
-  </div>
-</template>
