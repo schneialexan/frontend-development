@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      baseUrl: process.env.BASE_URL || 'https://todo-app-front-end-dev.vercel.app/' || 'http://localhost:3000'
+      baseUrl: process.env.BASE_URL || 'https://todo-app-front-end-dev.vercel.app'
     }
   },
   ui: {
