@@ -1,7 +1,7 @@
 <template>
   <div class="drawer lg:drawer-open">
     <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content">
+    <div class="drawer-content u-bg-black">
       <!-- Page content here -->
       <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
       <div class="w-full my-[200px]">
@@ -31,8 +31,8 @@
                       <UToggle v-model="task.is_completed" :name="String(task.id)" icon-off="heroicons-solid:x"
                         icon-on="heroicons-solid:check" />
                     </div>
-                    <UButton class="ml-3 text-red-600" size="sm" variant="transparent" icon="i-heroicons-outline-trash"
-                      @click="removeTask(task)" />
+                    <UButton class="ml-3 text-red-600 trashbutton" size="sm" variant="transparent"
+                      icon="i-heroicons-outline-trash" @click="removeTask(task)" />
                   </div>
                 </UFormGroup>
               </div>
@@ -50,10 +50,10 @@
             <div class="flex justify-between items-center">
               <a :href="`#${list.id}`" :class="{ 'text-blue-500': activeList === list.id }">{{ list.name }}</a>
               <div>
-              <button @click="editList(list)" class="text-gray-600 ml-2" title="Edit list">
-                <i class="i-heroicons-outline-pencil"></i> </button>
-              <button @click="removeList(list)" class="text-red-600 ml-2" title="Remove list">
-                <i class="i-heroicons-outline-trash"></i> </button>
+                <button @click="editList(list)" class="text-gray-600 ml-2" title="Edit list">
+                  <i class="i-heroicons-outline-pencil"></i> </button>
+                <UButton class="ml-1 text-red-600 trashbutton" size="sm" variant="transparent"
+                  icon="i-heroicons-outline-trash" @click="removeList(list)" />
               </div>
             </div>
           </li>
@@ -66,6 +66,20 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+.drawer {
+  background-color: black;
+}
+
+.drawer-content {
+  padding: 1rem;
+}
+
+.trashbutton:hover {
+  color: red;
+}
+</style>
 
 <script setup lang="ts">
 import type { Database } from '~~/types/database.types'

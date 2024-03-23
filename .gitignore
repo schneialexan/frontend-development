@@ -9,3 +9,4 @@ node_modules
 nuxt.d.ts
 .history
 dist
+*lock*
