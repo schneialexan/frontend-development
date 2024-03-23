@@ -1,18 +1,16 @@
 <template>
-  <div class="flex">
-    <div class="container">
+  <div class="loginform">
+    <div>
       <slot />
     </div>
   </div>
 </template>
 
-<style lang="postcss">
+<style>
 
-.container {
-  display: flex;
-  justify-content: space-around;
+.loginform {
+  justify-content: center;
   align-items: center;
   height: 100vh;
-  padding: 0 1rem;
 }
 </style>

@@ -67,12 +67,6 @@
   </div>
 </template>
 
-<style lang="postcss">
-ul>li:last-child {
-  @apply border-b-0;
-}
-</style>
-
 <script setup lang="ts">
 import type { Database } from '~~/types/database.types'
 
