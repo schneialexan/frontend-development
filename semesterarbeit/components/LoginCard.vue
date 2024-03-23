@@ -42,7 +42,6 @@ const { auth } = useSupabaseClient()
 const email = ref('')
 const password = ref('')
 
-console.log(useRuntimeConfig().public.baseUrl)
 const redirectTo = `${useRuntimeConfig().public.baseUrl}/confirm`
 
 watchEffect(() => {
