@@ -50,9 +50,9 @@
             <div class="flex justify-between items-center">
               <a :href="`#${list.id}`" :class="{ 'text-blue-500': activeList === list.id }">{{ list.name }}</a>
               <div>
-                <button @click="editList(list)" class="text-gray-600 ml-2" title="Edit list">
-                  <i class="i-heroicons-outline-pencil"></i> </button>
-                <UButton class="ml-1 text-red-600 trashbutton" size="sm" variant="transparent"
+                <UButton class="text-gray-600" size="sm" variant="transparent"
+                  icon="i-heroicons-outline-pencil" @click="editList(list)" />
+                <UButton class="text-red-600 trashbutton" size="sm" variant="transparent"
                   icon="i-heroicons-outline-trash" @click="removeList(list)" />
               </div>
             </div>
