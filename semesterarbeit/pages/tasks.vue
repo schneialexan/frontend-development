@@ -6,6 +6,7 @@
       <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
       <div class="w-full my-[200px]">
         <h1 class="mb-12 text-6xl font-bold u-text-white">{{ activeListName }}</h1>
+        <template v-if="activeListName !== ''">
         <form class="flex gap-2 my-2" @submit.prevent="addTask">
           <UInput v-model="newTask" :loading="loading" class="w-full" size="xl" variant="white" type="text"
             name="newTask" placeholder="Make a coffee" autofocus autocomplete="off" />
@@ -39,6 +40,12 @@
             </li>
           </ul>
         </UCard>
+      </template>
+      <template v-else>
+        <UCard body-class="px-6 py-2">
+          <p class="u-text-gray-500">Please open a new todo-list.</p>
+        </UCard>
+      </template>
       </div>
     </div>
     <div class="drawer-side">
