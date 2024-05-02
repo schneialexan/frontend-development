@@ -200,6 +200,8 @@ async function createNewList() {
       console.error('Error creating new list:', error)
     } else {
       todoLists.value.push(data)
+      activeListName.value = listName
+      await fetchTasks(data.id)
     }
   }
 }
