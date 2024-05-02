@@ -7,6 +7,9 @@
         <UButton v-if="user" class="u-text-white" variant="transparent" @click="logout">
           Logout
         </UButton>
+        <span v-if="user">
+          Logged in as: {{ user.email }}
+        </span>
       </div>
     </div>
   </div>
