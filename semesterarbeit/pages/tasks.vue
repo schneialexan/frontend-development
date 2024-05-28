@@ -71,6 +71,7 @@
       </ul>
 
     </div>
+    <Toast v-if="errorMessage" :message="errorMessage" @close="errorMessage = ''" />
   </div>
 </template>
 
@@ -90,6 +91,9 @@
 
 <script setup lang="ts">
 import type { Database } from '~~/types/database.types'
+import { ref, watch} from 'vue'
+import Toast from '~/components/Toast.vue'
+import { useAsyncData } from '#app';
 
 const client = useSupabaseClient<Database>()
 const user = useSupabaseUser()
@@ -101,9 +105,10 @@ const activeListName = ref<string>('')
 
 const todoLists = ref<List[]>([])
 const tasks = ref<Task[]>([])
+const errorMessage = ref<string | null>(null)
 
 // Fetch todo lists and tasks
-onMounted(fetchData)
+useAsyncData(fetchData)
 watch(user, fetchData)
 
 async function fetchData() {
@@ -114,7 +119,7 @@ async function fetchData() {
     await fetchTodoLists()
     await fetchTasks(activeList.value || todoLists.value[0]?.id)
   } catch (error) {
-    console.error('Error fetching data:', error)
+    errorMessage.value = 'Error fetching data: ' + error
   } finally {
     loading.value = false
   }
@@ -123,7 +128,7 @@ async function fetchData() {
 async function fetchTodoLists() {
   const { data, error } = await client.from('lists').select('id, name').eq('user_id', user.value.id)
   if (error) {
-    throw new Error('Error fetching todo lists: ' + error.message)
+    errorMessage.value = 'Error fetching todo lists: ' + error.message
   }
   todoLists.value = data || []
 }
@@ -135,7 +140,7 @@ async function fetchTasks(listId: number) {
     .eq('list_id', listId)
     .order('created_at')
   if (error) {
-    throw new Error('Error fetching tasks: ' + error.message)
+    errorMessage.value = 'Error fetching tasks: ' + error.message
   }
   tasks.value = data || []
   activeList.value = listId
@@ -157,13 +162,13 @@ async function addTask() {
       .single()
 
     if (error) {
-      throw new Error('Error adding task: ' + error.message)
+      errorMessage.value = 'Error adding task: ' + error.message
     }
 
     await fetchTasks(activeList.value)
     newTask.value = ''
   } catch (error) {
-    console.error('Error adding task:', error)
+    errorMessage.value = 'Error adding task: ' + error
   } finally {
     loading.value = false
   }
@@ -186,7 +191,7 @@ async function removeTask(task: Task) {
     await client.from('tasks').delete().match({ id: task.id })
     tasks.value = tasks.value.filter(t => t.id !== task.id)
   } catch (error) {
-    console.error('Error removing task:', error)
+    errorMessage.value = 'Error removing task: ' + error
   }
 }
 
@@ -198,7 +203,7 @@ async function createNewList() {
       .select('id, name')
       .single()
     if (error) {
-      console.error('Error creating new list:', error)
+      errorMessage.value = 'Error creating new list: ' + error.message
     } else {
       todoLists.value.push(data)
       activeListName.value = listName
@@ -224,7 +229,7 @@ async function removeList(list: List) {
       todoLists.value = todoLists.value.filter(l => l.id !== list.id)
       await fetchTasks(todoLists.value[0]?.id)
     } catch (error) {
-      console.error('Error removing list:', error)
+      errorMessage.value = 'Error removing list: ' + error
     }
   }
 }

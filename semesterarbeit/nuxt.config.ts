@@ -8,6 +8,8 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     // Tailwind CSS
     '@nuxtjs/tailwindcss',
+    // Pinia
+    '@pinia/nuxt',
   ],
   runtimeConfig: {
     public: {

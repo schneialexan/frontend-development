@@ -7,11 +7,10 @@
             <UInput class="inputField" type="email" placeholder="Your email" v-model="email" name="email" variant="white"/>
           </div>
           <div>
-            <UInput class="inputField mt-2" type="password" placeholder="Your password" v-model="password" name="password" variant="white"/>
+            <UInput class="inputField mt-2" type="password" placeholder="Your password" v-model="password" name="password" variant="white" @keydown.enter="login" />
           </div>
           <div>
-            <UButton class="mt-2" block label="Login" variant="black"
-              @click="auth.signInWithPassword({ email, password })" />
+            <UButton class="mt-2" block label="Login" variant="black" @click="login" />
           </div>
         </div>
         <div class="relative mt-2">
@@ -19,7 +18,7 @@
             <div class="w-full border-t border-gray-300"></div>
           </div>
           <div class="relative flex justify-center text-sm">
-            <span class="px-2 u-bg-white text-gray-500"> Connect with </span>
+            <span class="px-2 u-bg-white u-text-gray-500"> Connect with </span>
           </div>
         </div>
         <div >
@@ -49,6 +48,10 @@ watchEffect(() => {
     navigateTo('/tasks')
   }
 })
+
+const login = async () => {
+  await auth.signInWithPassword({ email: email.value, password: password.value })
+}
 
 const props = defineProps({
   name: {
