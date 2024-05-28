@@ -1,12 +1,13 @@
 <template>
-  <AppContainer>
-    <AppHeader />
-    <PageContainer>
-      <NuxtPage />
-    </PageContainer>
-  </AppContainer>
+  <NuxtLayout>
+    <AppContainer>
+      <AppHeader />
+      <PageContainer>
+        <NuxtPage />
+      </PageContainer>
+    </AppContainer>
+  </NuxtLayout>
 </template>
-
 
 <script>
 import AppContainer from '~/layouts/AppContainer.vue'
