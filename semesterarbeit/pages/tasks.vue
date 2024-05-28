@@ -129,6 +129,7 @@ async function fetchTodoLists() {
 }
 
 async function fetchTasks(listId: number) {
+  if (!listId) return
   const { data, error } = await client.from('tasks').select('id, task, is_completed, list_id')
     .eq('user_id', user.value.id)
     .eq('list_id', listId)
