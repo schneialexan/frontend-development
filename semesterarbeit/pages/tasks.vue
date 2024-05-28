@@ -51,7 +51,7 @@
     <div class="drawer-side">
       <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
       
-      <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content flex flex-col justify-between">
+      <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content flex flex-col justify-between py-10">
         <div>
           <h2 class="text-lg font-semibold mb-4">ToDo-Lists:</h2>
           <li v-for="list in todoLists" :key="list.id" @click="fetchTasks(list.id)">
@@ -65,9 +65,10 @@
               </div>
             </div>
           </li>
+          
         </div>
         <li>
-          <button @click="createNewList" class="btn btn-primary mt-4">New List</button>
+          <button @click="createNewList" class="btn btn-primary mt-4" id="new-task-list-button">New List</button>
         </li>
       </ul>
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="fixed z-50">
     <Title>FrontEnd ToDo-List</Title>
     <div class="flex items-center md:justify-between justify-center">
       <div class="flex items-center">
@@ -31,20 +31,3 @@ const logout = async () => {
   navigateTo('/')
 }
 </script>
-
-<style scoped>
-.header {
-  position: fixed;
-  top: -100px; /* Start off-screen */
-  left: 0;
-  right: 0;
-  background-color: #333;
-  color: white;
-  padding: 10px 20px;
-  transition: top 0.3s ease-out; /* Smooth transition */
-}
-
-.header.visible {
-  top: 0; /* Bring header into view */
-}
-</style>
